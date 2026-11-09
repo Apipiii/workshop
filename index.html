@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Absensi Workshop - Scan Barcode</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+<div class="container">
+  <h1>🎯 Absensi Workshop</h1>
+  <p class="subtitle">Scan barcode peserta untuk mencatat kehadiran</p>
+
+  <!-- STATISTIK -->
+  <div class="stats">
+    <div class="stat-box"><div class="num" id="statTotal">0</div><div class="lbl">Total Peserta</div></div>
+    <div class="stat-box"><div class="num" id="statHadir">0</div><div class="lbl">Sudah Hadir</div></div>
+    <div class="stat-box"><div class="num" id="statBelum">0</div><div class="lbl">Belum Hadir</div></div>
+  </div>
+
+  <!-- SCANNER -->
+  <div class="card">
+    <div class="section-title">
+      <h2>📷 Scan Absensi</h2>
+      <button class="btn btn-primary btn-small" id="btnRefresh">🔄 Refresh Data</button>
+    </div>
+    <div id="reader"></div>
+    <div class="scan-status" id="scanStatus">Klik tombol di bawah untuk mulai scan</div>
+    <div class="center">
+      <button class="btn btn-primary" id="btnStart">Mulai Scan</button>
+      <button class="btn btn-danger" id="btnStop" style="display:none">Stop Scan</button>
+    </div>
+  </div>
+
+  <!-- DAFTAR PESERTA -->
+  <div class="card">
+    <div class="section-title">
+      <h2>📋 Daftar Peserta & Kehadiran</h2>
+      <input type="text" id="searchBox" placeholder="🔍 Cari nama / NIM..." style="max-width:220px;">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Level HTML/CSS</th>
+            <th>Status</th>
+            <th>Jam Absen</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tabelPeserta">
+          <tr><td colspan="7" style="text-align:center;opacity:.6">Memuat data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL BARCODE -->
+<div id="qrModal" class="qr-modal">
+  <div class="qr-modal-content">
+    <h3>Barcode Peserta</h3>
+    <p id="qrNama"></p>
+    <img id="qrImg" alt="Barcode">
+    <br><br>
+    <button class="btn btn-primary" id="btnTutupQR">Tutup</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
